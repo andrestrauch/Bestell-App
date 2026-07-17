@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Bestell App</title>
 
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="./assets/icons/favicon.png"
+        />
+
         <link rel="stylesheet" href="./styles/standard.css" />
         <link rel="stylesheet" href="./styles/fonts.css" />
         <link rel="stylesheet" href="./styles/basket.css" />
@@ -13,12 +19,107 @@
         <script src="./scripts/db.js" defer></script>
         <script src="./scripts/templates.js" defer></script>
         <script src="script.js" defer></script>
-
-        <link rel="shortcut icon" href="" type="image/x-icon" />
     </head>
-    <body>
-        <header class="header"></header>
-        <main></main>
-        <footer class="footer"></footer>
+    <body onload="init()">
+        <header class="header">
+            <section class="header-content">
+                <div class="left-icons">
+                    <img
+                        class="dinner"
+                        src="./assets/icons/dinner.png"
+                        alt=""
+                    />
+                    <img
+                        class="bestellapp"
+                        src="./assets/icons/bestell_app.png"
+                        alt=""
+                    />
+                </div>
+                <img class="menu-icon" src="./assets/icons/menu.png" alt="" />
+            </section>
+        </header>
+
+        <main>
+            <section class="hero">
+                <img
+                    class="burer-logo"
+                    src="./assets/icons/burger.png"
+                    alt=""
+                />
+            </section>
+
+            <section class="headline">
+                <div class="h1-rating">
+                    <h1>Burger<span>House</span></h1>
+                    <div class="ratings">
+                        <img src="./assets/icons/star.png" alt="" />
+                        <p>4,1</p>
+                        <p class="likes">(317)</p>
+                    </div>
+                </div>
+                <p class="descr">
+                    The best of Burgers, Pizza, and Greens, all in one great
+                    place.
+                </p>
+            </section>
+
+            <section class="order-section">
+                <section class="menu-section">
+                    <article class="category">
+                        <div class="category-content">
+                            <img
+                                src="./assets/icons/burger_section.png"
+                                alt=""
+                            />
+                            <h2>Burger & Sandwiches</h2>
+                        </div>
+                    </article>
+
+                    <section class="cat-menu">
+                        <div id="burgerMenu">Platzhalter 1</div>
+                    </section>
+
+                    <article class="category">
+                        <div class="category-content">
+                            <img
+                                src="./assets/icons/pizza_section.png"
+                                alt=""
+                            />
+                            <h2>Pizza (30cm)</h2>
+                        </div>
+                    </article>
+
+                    <section class="cat-menu">
+                        <div id="pizzaMenu">Platzhalter 2</div>
+                    </section>
+
+                    <article class="category">
+                        <div class="category-content">
+                            <img
+                                src="./assets/icons/salad_section.png"
+                                alt=""
+                            />
+                            <h2>Salad</h2>
+                        </div>
+                    </article>
+
+                    <section class="cat-menu">
+                        <div id="saladMenu">Platzhalter 3</div>
+                    </section>
+                </section>
+
+                <section class="basket-wrapper">
+                    <p>Warenkorb Test</p>
+                </section>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <section class="footer-content">
+                <p>&copy; 2025 BurgerHouse</p>
+                <p>Imprint</p>
+                <p>Cookie Preferences</p>
+            </section>
+        </footer>
     </body>
 </html>
