@@ -88,4 +88,19 @@ let salad = [
         img: "./assets/img/salad4.jpg",
     },
 ];
-let basket = [];
+let basket = [
+    {
+        name: "Big chicken burger",
+        descr: "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper, ",
+        price: 15.9,
+        addet: 0,
+        img: "./assets/img/burger4.jpg",
+    },
+    {
+        name: "Big chicken burger",
+        descr: "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper, ",
+        price: 15.9,
+        addet: 0,
+        img: "./assets/img/burger4.jpg",
+    },
+];

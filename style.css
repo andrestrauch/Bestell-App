@@ -54,8 +54,9 @@ main {
 
     .hero {
         width: 100%;
-        height: 508px;
-        background-color: red;
+        max-width: 1440px;
+        height: 400px;
+        object-fit: cover;
         display: flex;
         justify-content: center;
 
@@ -70,7 +71,7 @@ main {
             border: 13px solid rgb(253, 234, 220);
             border-radius: 50%;
             object-fit: cover;
-            transform: translateY(380px);
+            transform: translateY(280px);
             z-index: 2;
         }
     }
@@ -135,43 +136,113 @@ main {
     .order-section {
         width: 100%;
         display: flex;
-        /* background-color: green; */
-
-        .basket-wrapper {
-            width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
-            background-color: blue;
-            font-size: 40px;
-        }
+        justify-content: center;
+        align-items: center;
+        /* background-color: red; */
 
         .menu-section {
             height: 100%;
+            max-width: 1440px;
             display: flex;
             flex: 1;
             flex-direction: column;
             justify-content: center;
-            /* background-color: red; */
+            /* align-items: center; */
+            /* background-color: green; */
+
+            .basket-wrapper {
+                width: 320px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 2;
+                /* background-color: yellow; */
+                font-size: 32px;
+
+                position: absolute;
+                height: 100%;
+                right: 0;
+
+                .basket {
+                    width: 320px;
+                    height: 777px;
+                    background-color: rgba(54, 53, 52, 1);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 65px;
+                    border-top-left-radius: 30px;
+                    border-bottom-left-radius: 30px;
+                    position: sticky;
+                    top: 0;
+
+                    .basket-content {
+                        /* background-color: green; */
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        h3 {
+                            color: rgba(253, 234, 220, 1);
+                            font-size: 32px;
+                            line-height: 120%;
+                            display: flex;
+                            justify-content: center;
+                            padding-bottom: 36px;
+                        }
+
+                        .dishes {
+                            display: flex;
+                            flex-direction: column;
+                            width: 280px;
+                            height: 600px;
+                            background-color: rgba(253, 234, 220, 1);
+                            margin-bottom: 10px;
+                            border-radius: 20px;
+                            padding: 20px;
+
+                            h4 {
+                                font-size: 22px;
+                                line-height: 120%;
+                            }
+
+                            .order-price {
+                                display: flex;
+                                justify-content: space-between;
+                                .price {
+                                    width: 100%;
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             .category {
                 width: 100%;
                 height: 60px;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-end;
                 align-items: center;
                 background-color: rgba(231, 108, 31, 1);
 
                 .category-content {
-                    width: 500px;
+                    width: 75%;
                     display: flex;
-                    justify-content: flex-start;
                     align-items: center;
+                    justify-content: flex-start;
+                    color: white;
+                    /* padding-right: 250px; */
+                    /* background-color: red; */
 
                     img {
                         width: 88px;
                         height: 91px;
+                        transform: translateY(-10px);
                     }
                     h2 {
                         font-size: 40px;
@@ -186,12 +257,13 @@ main {
                 align-items: center;
                 justify-content: center;
                 /* background-color: red; */
-                padding: 16px 0;
+                padding: 16px 0 45px 0;
 
                 .menu-box {
                     background-color: rgba(253, 234, 220, 1);
                     padding: 10px;
                     margin-bottom: 8px;
+                    margin-right: 100px;
                     display: flex;
                     gap: 16px;
                     width: 713px;
