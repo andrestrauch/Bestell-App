@@ -44,14 +44,14 @@ let pizza = [
         img: "./assets/img/pizza2.jpg",
     },
     {
-        name: "Funghi",
+        name: "Pizza Funghi",
         descr: "Red onion, Olives, Button Mushrooms, Mozzarella",
         price: 12.9,
         addet: 0,
         img: "./assets/img/pizza3.jpg",
     },
     {
-        name: "Quattro Formaggi with Chicken ",
+        name: "Pizza Quattro Formaggi with Chicken ",
         descr: "Chicken, Mozzarella, Gorgonzola, Fontina,  Parmigiano Reggiano",
         price: 15.9,
         addet: 0,
@@ -88,19 +88,6 @@ let salad = [
         img: "./assets/img/salad4.jpg",
     },
 ];
-let basket = [
-    {
-        name: "Big chicken burger",
-        descr: "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper, ",
-        price: 15.9,
-        addet: 0,
-        img: "./assets/img/burger4.jpg",
-    },
-    {
-        name: "Big chicken burger",
-        descr: "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper, ",
-        price: 15.9,
-        addet: 0,
-        img: "./assets/img/burger4.jpg",
-    },
-];
+let basket = [];
+
+let dialogRef;
