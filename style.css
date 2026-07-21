@@ -168,10 +168,12 @@ main {
             justify-content: center;
             /* align-items: center; */
             /* background-color: green; */
+
             .d-none {
                 display: none;
                 opacity: 0;
             }
+
             .basket-wrapper {
                 width: 320px;
                 display: flex;
@@ -185,7 +187,6 @@ main {
                 height: 100%;
                 right: 0;
 
-                /* display: none; */
                 .basket {
                     width: 320px;
                     background-color: rgba(54, 53, 52, 1);
@@ -214,6 +215,30 @@ main {
                             display: flex;
                             justify-content: center;
                             padding-bottom: 36px;
+                        }
+
+                        .empty-basket {
+                            color: rgba(253, 234, 220, 1);
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+
+                            p {
+                                font-size: 22px;
+                                line-height: 120%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: center;
+                                align-items: center;
+                                width: 100%;
+                                text-align: center;
+                                padding: 0 8px;
+                            }
+                            img {
+                                width: 128px;
+                                height: 128px;
+                                margin-top: 72px;
+                            }
                         }
 
                         .dish-wrapper {
@@ -245,13 +270,22 @@ main {
                                 border-radius: 20px;
                                 padding: 20px;
 
-                                h4 {
-                                    width: 100%;
-                                    font-size: 22px;
-                                    line-height: 120%;
+                                .name-trash {
                                     display: flex;
-                                    flex-wrap: wrap;
-                                    /* background-color: red; */
+                                    h4 {
+                                        width: 90%;
+                                        font-size: 22px;
+                                        line-height: 120%;
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        /* background-color: red; */
+                                    }
+                                    button {
+                                        border: none;
+                                    }
+                                    button:hover {
+                                        background-color: red;
+                                    }
                                 }
 
                                 .order-price {
@@ -339,14 +373,14 @@ main {
                         }
 
                         .order-btn {
-                            width: 290px;
+                            width: 200px;
                             height: 64px;
                             background-color: rgba(231, 108, 31, 1);
                             color: white;
                             font-size: 30px;
                             line-height: 120%;
                             border-radius: 60px;
-                            margin-bottom: 56px;
+                            margin-bottom: 32px;
                         }
                     }
                 }
@@ -488,9 +522,7 @@ main {
 }
 
 dialog.opened {
-    /* width: 500px; */
-    /* height: 500px; */
-    transition: all 500ms ease-in-out;
+    transition: all 300ms ease-in-out;
     margin: auto;
     padding: 32px 40px;
 

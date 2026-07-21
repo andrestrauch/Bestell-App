@@ -5,40 +5,40 @@ function init() {
     renderBasket();
 }
 function renderBasket() {
-    let basketRef = document.getElementById(`basket`);
+    const basketRef = document.getElementById(`basket`);
     basketRef.innerHTML = "";
     basketRef.innerHTML += /*html*/ `
         <div class="basket-content" id="basketContent"> 
         </div> 
     `;
-
-    let contentRef = document.getElementById(`basketContent`);
+    const contentRef = document.getElementById(`basketContent`);
     contentRef.innerHTML = "";
     contentRef.innerHTML += /*html*/ `
         <h3>Your Basket</h3>
         <div class="dish-wrapper" id="dishWrapper"></div>
     `;
-    let dishRef = document.getElementById(`dishWrapper`);
+    const dishRef = document.getElementById(`dishWrapper`);
     dishRef.innerHTML = "";
 
-    for (let i = 0; i < basket.length; i++) {
-        let dishPrice = basket[i].price * basket[i].addet;
-        dishPrice = +dishPrice.toFixed(2);
+    if (basket.length > 0) {
+        for (let i = 0; i < basket.length; i++) {
+            let dishPrice = basket[i].price * basket[i].addet;
+            dishPrice = +dishPrice.toFixed(2);
 
-        let newPrice = "";
-        if (dishPrice % 1) newPrice = dishPrice + "0";
-        else newPrice = dishPrice;
-        basket[i].sum = newPrice;
+            let newPrice = "";
+            if (dishPrice % 1) newPrice = dishPrice + "0";
+            else newPrice = dishPrice;
+            basket[i].sum = newPrice;
 
-        dishRef.innerHTML += /*html*/ `
+            dishRef.innerHTML += /*html*/ `
             <div class="dishes">
-                <h4>${basket[i].name}</h4>
+                <div class="name-trash">
+                    <h4>${basket[i].name}</h4>
+                    <div id="removeBtn${i}"></div>
+                </div>
                 <div class="order-price">
                     <div class="dish-order">
-                        <button onclick="deleteDish(${i})">
-
-                        <img src="./assets/icons/delete.png" alt="Mülleimer">
-                        </button>
+                        <button id="deleteBtn${i}" onclick="deleteDish(${i})"></button>
                         <p>${basket[i].addet}</p>
                         <button onclick="addDish(${i})"><p>+</p></button>
                     </div>
@@ -46,24 +46,24 @@ function renderBasket() {
                 </div>
             </div>
         `;
-    }
+            renderDeleteBtn(i);
+        }
+        let subTotal = 0;
+        let price = 0;
+        let deliver = 0;
+        let total = 0;
 
-    let subTotal = 0;
-    let price = 0;
-    let deliver = 0;
-    let total = 0;
+        if (basket.length > 0) deliver = 4.99;
+        for (let x = 0; x < basket.length; x++) {
+            price = price + basket[x].addet * basket[x].price;
+        }
+        subTotal = Number.parseFloat(price).toFixed(2);
+        subTotal = parseFloat(subTotal);
+        total = subTotal + deliver;
+        total = Number.parseFloat(total).toFixed(2);
+        if (subTotal % 1) subTotal = subTotal + "0";
 
-    if (basket.length > 0) deliver = 4.99;
-    for (let x = 0; x < basket.length; x++) {
-        price = price + basket[x].addet * basket[x].price;
-    }
-    subTotal = Number.parseFloat(price).toFixed(2);
-    subTotal = parseFloat(subTotal);
-    total = subTotal + deliver;
-    total = Number.parseFloat(total).toFixed(2);
-    if (subTotal % 1) subTotal = subTotal + "0";
-
-    contentRef.innerHTML += /*html*/ `
+        contentRef.innerHTML += /*html*/ `
         <section class="price-table">
             <div class="sub-fee">
                 <div class="sub">
@@ -80,12 +80,19 @@ function renderBasket() {
                 <p>${total} €</p>
             </div>
         </section>
-
-        <button onclick="checkOrder()" class="order-btn">Buy now (${total} €)</button>
+        <button onclick="checkOrder()" class="order-btn">Buy now</button>
+        <!-- (${total} €) -->
     `;
+    } else {
+        dishRef.innerHTML += /*html*/ `
+            <div class="empty-basket">
+                <p>Nothing here yet.</p>
+                <p>Go ahead and choose something delicious!</p>
+                <img src="./assets/icons/shopping_cart.png" alt="Einkaufswagen Symbol">
+            </div>
+        `;
+    }
 }
-
-// nach order weiteres zählen in den 3 add buttons verhindern
 
 function renderBurger() {
     let burgerRef = document.getElementById(`burgerMenu`);
@@ -207,8 +214,32 @@ function renderSalad() {
     }
 }
 
+function renderDeleteBtn(i) {
+    const deleteRef = document.getElementById(`deleteBtn${i}`);
+    const removeRef = document.getElementById(`removeBtn${i}`);
+
+    deleteRef.innerHTML = "";
+    removeRef.innerHTML = "";
+
+    if (basket[i].addet == 1) {
+        deleteRef.innerHTML += /*html*/ `
+            <img src="./assets/icons/delete.png" alt="Mülleimer"></img>
+        `;
+    }
+    if (basket[i].addet > 1) {
+        deleteRef.innerHTML += /*html*/ `
+            <img src="./assets/icons/minus.png" alt="Minus Symbol"></img>
+        `;
+        removeRef.innerHTML += /*html*/ `
+            <button onclick="RemoveDish(${i})">
+                <img src="./assets/icons/delete.png" alt="Mülleimer"></img>
+            </button>
+        `;
+    }
+}
+
 function addBurgerToBasket(i) {
-    let obj = [{ name: "", category: "", price: 0, sum: 0, addet: 0 }];
+    let obj = { name: "", category: "", price: 0, sum: 0, addet: 0 };
 
     obj.name = burger[i].name;
     obj.category = "burger";
@@ -242,7 +273,7 @@ function addBurgerToBasket(i) {
 }
 
 function addPizzaToBasket(i) {
-    let obj = [{ name: "", category: "", price: 0, sum: 0, addet: 0 }];
+    let obj = { name: "", category: "", price: 0, sum: 0, addet: 0 };
 
     obj.name = pizza[i].name;
     obj.category = "pizza";
@@ -284,7 +315,7 @@ function addPizzaToBasket(i) {
 }
 
 function addSaladToBasket(i) {
-    let obj = [{ name: "", category: "", price: 0, sum: 0, addet: 0 }];
+    let obj = { name: "", category: "", price: 0, sum: 0, addet: 0 };
 
     obj.name = salad[i].name;
     obj.category = "salad";
@@ -363,6 +394,41 @@ function deleteDish(i) {
     renderBasket();
 }
 
+function RemoveDish(i) {
+    basket[i].addet = 0;
+    if (basket[i].category == "burger") {
+        let burgerIndex = 0;
+        for (let y = 0; y < burger.length; y++) {
+            if (basket[i].name == burger[y].name) {
+                burgerIndex = y;
+            }
+        }
+        burger[burgerIndex].addet = 0;
+        renderBurger();
+    } else if (basket[i].category == "pizza") {
+        let pizzaIndex = 0;
+        for (let y = 0; y < pizza.length; y++) {
+            if (basket[i].name == pizza[y].name) {
+                pizzaIndex = y;
+            }
+        }
+        pizza[pizzaIndex].addet = 0;
+        renderPizza();
+    } else if (basket[i].category == "salad") {
+        let saladIndex = 0;
+        for (let y = 0; y < salad.length; y++) {
+            if (basket[i].name == salad[y].name) {
+                saladIndex = y;
+            }
+        }
+        salad[saladIndex].addet = 0;
+        renderSalad();
+    }
+
+    if (basket[i].addet == 0) basket.splice(i, 1);
+    renderBasket();
+}
+
 function addDish(i) {
     basket[i].addet++;
 
@@ -399,7 +465,7 @@ function addDish(i) {
 
 function checkOrder() {
     if (basket.length == 0) {
-        let wrapperRef = document.getElementById(`basketWrapper`);
+        wrapperRef = document.getElementById(`basketWrapper`);
         wrapperRef.innerHTML += /*html*/ `
         <dialog id="myDialog">
             <div class="dialog-header">
@@ -413,14 +479,18 @@ function checkOrder() {
     `;
         dialogRef = document.getElementById(`myDialog`);
         startDialog();
-    } else startOrder();
+    } else {
+        resetArrays();
+        renderBurger();
+        renderPizza();
+        renderSalad();
+        startOrder();
+    }
 }
 
 function startOrder() {
-    let wrapperRef = document.getElementById(`basketWrapper`);
+    wrapperRef = document.getElementById(`basketWrapper`);
     wrapperRef.classList.add(`d-none`);
-
-    wrapperRef.innerHTML = "";
     wrapperRef.innerHTML += /*html*/ `
         <dialog id="myDialog">
             <div class="dialog-header">
@@ -444,6 +514,8 @@ function startDialog() {
 function closeDialog() {
     dialogRef.close();
     dialogRef.classList.remove(`opened`);
+    wrapperRef.classList.remove(`d-none`);
+    renderBasket();
 }
 
 function StartEventListener() {
@@ -462,5 +534,13 @@ function StartEventListener() {
     setTimeout(() => {
         closeDialog();
     }, 5000);
-    // setTimeout(closeDialog(), 600000);
+}
+
+function resetArrays() {
+    for (let x = 0; x < burger.length; x++) {
+        burger[x].addet = 0;
+        pizza[x].addet = 0;
+        salad[x].addet = 0;
+    }
+    basket.splice(0, basket.length);
 }

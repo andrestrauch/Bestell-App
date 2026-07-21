@@ -91,3 +91,4 @@ let salad = [
 let basket = [];
 
 let dialogRef;
+let wrapperRef;
