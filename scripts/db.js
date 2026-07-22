@@ -92,3 +92,8 @@ let basket = [];
 
 let dialogRef;
 let wrapperRef;
+
+let subTotal;
+let price;
+let deliver;
+let total;

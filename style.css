@@ -243,7 +243,7 @@ main {
 
                         .dish-wrapper {
                             /* background-color: orange; */
-                            height: 368px;
+                            height: 360px;
                             margin-bottom: 30px;
                             display: flex;
                             flex-direction: column;
@@ -272,19 +272,36 @@ main {
 
                                 .name-trash {
                                     display: flex;
+                                    align-items: center;
+                                    /* background-color: red; */
                                     h4 {
                                         width: 90%;
                                         font-size: 22px;
                                         line-height: 120%;
                                         display: flex;
                                         flex-wrap: wrap;
-                                        /* background-color: red; */
                                     }
                                     button {
                                         border: none;
-                                    }
-                                    button:hover {
-                                        background-color: red;
+                                        height: 18px;
+                                        width: 16px;
+
+                                        img {
+                                            background-color: rgba(
+                                                253,
+                                                234,
+                                                220,
+                                                1
+                                            );
+                                        }
+                                        img:hover {
+                                            background-color: rgba(
+                                                231,
+                                                108,
+                                                31,
+                                                1
+                                            );
+                                        }
                                     }
                                 }
 
@@ -294,17 +311,33 @@ main {
                                     justify-content: space-between;
                                     /* background-color: rgba(255, 0, 0, 0.22); */
                                     margin-top: 8px;
+                                    height: 30x;
 
-                                    button {
+                                    .count {
+                                        width: 30px;
+                                        /* background-color: red; */
+                                        display: flex;
+                                        justify-content: center;
+                                    }
+
+                                    .plus-btn {
+                                        font-size: 32px;
+                                        height: 18px;
+                                        width: 18px;
                                         display: flex;
                                         align-items: center;
-                                        padding: 2px;
-                                        border: none;
-                                        background-color: rgb(253, 234, 220);
-                                        p {
-                                            font-size: 24px;
-                                        }
+                                        justify-content: center;
                                     }
+
+                                    .minus-btn {
+                                        /* font-size: 24x; */
+                                        width: 20px;
+                                        height: 20px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+
                                     .dish-order {
                                         width: 100%;
                                         display: flex;
@@ -492,6 +525,12 @@ main {
                             .btn-addet {
                                 color: rgba(231, 108, 31, 1);
                             }
+                            .btn-addet:hover {
+                                color: red;
+                            }
+                            button:hover {
+                                color: rgba(231, 108, 31, 1);
+                            }
                         }
                     }
                 }
@@ -570,4 +609,21 @@ dialog.opened {
 
 dialog::backdrop {
     background-color: rgba(69, 68, 68, 0.8);
+}
+
+@media screen and (max-width: 768px) {
+    .basket-wrapper,
+    .basket,
+    .menu-icon {
+        display: none;
+        opacity: 0;
+        width: 0px;
+        height: 0px;
+    }
+
+    .menu-box {
+        /* flex-direction: column; */
+        background-color: red;
+        color: red;
+    }
 }
