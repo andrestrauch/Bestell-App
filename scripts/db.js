@@ -90,6 +90,9 @@ let salad = [
 ];
 let basket = [];
 
+let basketRef;
+let contentRef;
+let dishRef;
 let dialogRef;
 let wrapperRef;
 
@@ -97,3 +100,4 @@ let subTotal;
 let price;
 let deliver;
 let total;
+let orderWay = "Deliver";

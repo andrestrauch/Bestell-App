@@ -5,24 +5,40 @@ function init() {
     renderBasket();
 }
 
-function renderBasket() {
-    const basketRef = document.getElementById(`basket`);
+function setOrderWay() {
+    if (orderWay == "Deliver") orderWay = "Pick";
+    else orderWay = "Deliver";
+
+    if (basket.length > 0) {
+        setTotalPrices();
+        renderPriceTable();
+    }
+}
+
+function setRenderRefs() {
+    basketRef = document.getElementById(`basket`);
     basketRef.innerHTML = "";
     basketRef.innerHTML += basketContentTemplate();
-    const contentRef = document.getElementById(`basketContent`);
+    contentRef = document.getElementById(`basketContent`);
     contentRef.innerHTML = "";
     contentRef.innerHTML += basketDishWrapperTemplate();
-    const dishRef = document.getElementById(`dishWrapper`);
+    dishRef = document.getElementById(`dishWrapper`);
     dishRef.innerHTML = "";
+}
 
+function renderBasket() {
+    setRenderRefs();
     if (basket.length == 0) dishRef.innerHTML += emptyBasketTemplate();
     else {
         for (let i = 0; i < basket.length; i++) {
             setDishPrice(i);
             dishRef.innerHTML += basketDishTemplate(i);
+            renderDishCount(i);
+            renderDishPrice(i);
         }
         setTotalPrices();
         contentRef.innerHTML += basketPriceTableTemplate();
+        renderPriceTable();
     }
 }
 
@@ -83,6 +99,70 @@ function renderSalad() {
     }
 }
 
+function renderBurgerAddButton(i) {
+    let btnRef = document.getElementById(`burgerBtn${i}`);
+    btnRef.innerHTML = "";
+
+    if (burger[i].addet > 0) {
+        btnRef.innerHTML += burgerBtnTemplate(i);
+        btnRef.classList.add("btn-addet");
+    } else {
+        btnRef.innerHTML += burgerBtnZeroTemplate();
+        btnRef.classList.remove("btn-addet");
+    }
+}
+
+function renderPizzaAddButton(i) {
+    let btnRef = document.getElementById(`pizzaBtn${i}`);
+    btnRef.innerHTML = "";
+
+    if (pizza[i].addet > 0) {
+        btnRef.innerHTML += pizzaBtnTemplate(i);
+        btnRef.classList.add("btn-addet");
+    } else {
+        btnRef.innerHTML += pizzaBtnZeroTemplate();
+        btnRef.classList.remove("btn-addet");
+    }
+}
+
+function renderSaladAddButton(i) {
+    let btnRef = document.getElementById(`saladBtn${i}`);
+    btnRef.innerHTML = "";
+
+    if (salad[i].addet > 0) {
+        btnRef.innerHTML += saladBtnTemplate(i);
+        btnRef.classList.add("btn-addet");
+    } else {
+        btnRef.innerHTML += saladBtnZeroTemplate();
+        btnRef.classList.remove("btn-addet");
+    }
+}
+
+function renderDishCount(i) {
+    let dishCountRef = document.getElementById(`dishCount${i}`);
+    dishCountRef.innerHTML = "";
+    dishCountRef.innerHTML += dishCountTemplate(i);
+}
+
+function renderDishPrice(i) {
+    let priceRef = document.getElementById(`dishPrice${i}`);
+    priceRef.innerHTML = "";
+    priceRef.innerHTML += dishPriceTemplate(i);
+}
+
+function renderPriceTable() {
+    let subRef = document.getElementById(`subTotal`);
+    let deliverRef = document.getElementById(`deliveryFee`);
+    let totalRef = document.getElementById(`totalPrice`);
+    subRef.innerHTML = "";
+    deliverRef.innerHTML = "";
+    totalRef.innerHTML = "";
+
+    subRef.innerHTML += subTotalTemplate();
+    deliverRef.innerHTML += deliveryFeeTemplate();
+    totalRef.innerHTML += totalPriceTemplate();
+}
+
 function addBurgerToBasket(i) {
     let obj = { name: "", category: "", price: 0, sum: 0, addet: 0 };
 
@@ -94,8 +174,7 @@ function addBurgerToBasket(i) {
     obj.sum = 0;
 
     checkBasket(obj);
-    renderBurger();
-    renderBasket();
+    renderBurgerAddButton(i);
 }
 
 function addPizzaToBasket(i) {
@@ -108,8 +187,7 @@ function addPizzaToBasket(i) {
     obj.addet = pizza[i].addet;
 
     checkBasket(obj);
-    renderPizza();
-    renderBasket();
+    renderPizzaAddButton(i);
 }
 
 function addSaladToBasket(i) {
@@ -122,20 +200,122 @@ function addSaladToBasket(i) {
     obj.addet = salad[i].addet;
 
     checkBasket(obj);
-    renderSalad();
-    renderBasket();
+    renderSaladAddButton(i);
+}
+
+function checkBasket(obj) {
+    let inBasket = false;
+    let basketIndex = 0;
+    for (let y = 0; y < basket.length; y++) {
+        if (obj.name == basket[y].name) {
+            inBasket = true;
+            basketIndex = y;
+        }
+    }
+    if (inBasket == false) {
+        basket.push(obj);
+        orderWay = "Deliver";
+        renderBasket();
+    } else {
+        updateBasket(basketIndex);
+    }
+}
+
+function updateBasket(basketIndex) {
+    basket[basketIndex].addet++;
+    setDishPrice(basketIndex);
+    renderDishCount(basketIndex);
+    renderDishPrice(basketIndex);
+    setTotalPrices();
+    renderPriceTable();
+}
+
+function addDish(i) {
+    basket[i].addet++;
+    if (basket[i].category == "burger") addBurger(i);
+    else if (basket[i].category == "pizza") addPizza(i);
+    else if (basket[i].category == "salad") addSalad(i);
+    renderDishCount(i);
+    setDishPrice(i);
+    renderDishPrice(i);
+    setTotalPrices();
+    renderPriceTable();
+}
+
+function addBurger(i) {
+    let burgerIndex = 0;
+    for (let y = 0; y < burger.length; y++) {
+        if (basket[i].name == burger[y].name) {
+            burgerIndex = y;
+        }
+    }
+    burger[burgerIndex].addet++;
+    renderBurgerAddButton(burgerIndex);
+}
+
+function addPizza(i) {
+    let pizzaIndex = 0;
+    for (let y = 0; y < pizza.length; y++) {
+        if (basket[i].name == pizza[y].name) {
+            pizzaIndex = y;
+        }
+    }
+    pizza[pizzaIndex].addet++;
+    renderPizzaAddButton(pizzaIndex);
+}
+
+function addSalad(i) {
+    let saladIndex = 0;
+    for (let y = 0; y < salad.length; y++) {
+        if (basket[i].name == salad[y].name) {
+            saladIndex = y;
+        }
+    }
+    salad[saladIndex].addet++;
+    renderSaladAddButton(saladIndex);
+}
+
+function setDishPrice(i) {
+    let dishPrice = basket[i].price * basket[i].addet;
+    dishPrice = +dishPrice.toFixed(2);
+    let newPrice = "";
+    if (dishPrice % 1) newPrice = dishPrice + "0";
+    else newPrice = dishPrice;
+    basket[i].sum = newPrice;
+}
+
+function setTotalPrices() {
+    subTotal = 0;
+    price = 0;
+    deliver = 0;
+    total = 0;
+
+    if (basket.length > 0 && orderWay == "Deliver") deliver = 4.99;
+    for (let x = 0; x < basket.length; x++) {
+        price = price + basket[x].addet * basket[x].price;
+    }
+    subTotal = Number.parseFloat(price).toFixed(2);
+    subTotal = parseFloat(subTotal);
+    total = subTotal + deliver;
+    total = Number.parseFloat(total).toFixed(2);
+    if (subTotal % 1) subTotal = subTotal + "0";
 }
 
 function deleteDish(i) {
     basket[i].addet--;
     if (basket[i].addet < 0) basket[i].addet = 0;
-
     if (basket[i].category == "burger") deleteBurger(i);
     else if (basket[i].category == "pizza") deletePizza(i);
     else if (basket[i].category == "salad") deleteSalad(i);
-
-    if (basket[i].addet == 0) basket.splice(i, 1);
-    renderBasket();
+    renderDishCount(i);
+    setDishPrice(i);
+    renderDishPrice(i);
+    setTotalPrices();
+    renderPriceTable();
+    if (basket[i].addet == 0) {
+        basket.splice(i, 1);
+        renderBasket();
+    }
 }
 
 function deleteBurger(i) {
@@ -146,7 +326,7 @@ function deleteBurger(i) {
         }
     }
     burger[burgerIndex].addet--;
-    renderBurger();
+    renderBurgerAddButton(burgerIndex);
 }
 
 function deletePizza(i) {
@@ -157,7 +337,7 @@ function deletePizza(i) {
         }
     }
     pizza[pizzaIndex].addet--;
-    renderPizza();
+    renderPizzaAddButton(pizzaIndex);
 }
 
 function deleteSalad(i) {
@@ -168,7 +348,7 @@ function deleteSalad(i) {
         }
     }
     salad[saladIndex].addet--;
-    renderSalad();
+    renderSaladAddButton(saladIndex);
 }
 
 function RemoveDish(i) {
@@ -189,7 +369,7 @@ function removeBurger(i) {
         }
     }
     burger[burgerIndex].addet = 0;
-    renderBurger();
+    renderBurgerAddButton(burgerIndex);
 }
 
 function removePizza(i) {
@@ -200,7 +380,7 @@ function removePizza(i) {
         }
     }
     pizza[pizzaIndex].addet = 0;
-    renderPizza();
+    renderPizzaAddButton(pizzaIndex);
 }
 
 function removeSalad(i) {
@@ -211,100 +391,7 @@ function removeSalad(i) {
         }
     }
     salad[saladIndex].addet = 0;
-    renderSalad();
-}
-
-function addDish(i) {
-    basket[i].addet++;
-    if (basket[i].category == "burger") addBurger(i);
-    else if (basket[i].category == "pizza") addPizza(i);
-    else if (basket[i].category == "salad") addSalad(i);
-    renderBasket();
-}
-
-function addBurger(i) {
-    let burgerIndex = 0;
-    for (let y = 0; y < burger.length; y++) {
-        if (basket[i].name == burger[y].name) {
-            burgerIndex = y;
-        }
-    }
-    burger[burgerIndex].addet++;
-    renderBurger();
-}
-
-function addPizza(i) {
-    let pizzaIndex = 0;
-    for (let y = 0; y < pizza.length; y++) {
-        if (basket[i].name == pizza[y].name) {
-            pizzaIndex = y;
-        }
-    }
-    pizza[pizzaIndex].addet++;
-    renderPizza();
-}
-
-function addSalad(i) {
-    let saladIndex = 0;
-    for (let y = 0; y < salad.length; y++) {
-        if (basket[i].name == salad[y].name) {
-            saladIndex = y;
-        }
-    }
-    salad[saladIndex].addet++;
-    renderSalad();
-}
-
-function setDishPrice(i) {
-    let dishPrice = basket[i].price * basket[i].addet;
-    dishPrice = +dishPrice.toFixed(2);
-    let newPrice = "";
-    if (dishPrice % 1) newPrice = dishPrice + "0";
-    else newPrice = dishPrice;
-    basket[i].sum = newPrice;
-}
-
-function setTotalPrices() {
-    subTotal = 0;
-    price = 0;
-    deliver = 0;
-    total = 0;
-
-    if (basket.length > 0) deliver = 4.99;
-    for (let x = 0; x < basket.length; x++) {
-        price = price + basket[x].addet * basket[x].price;
-    }
-    subTotal = Number.parseFloat(price).toFixed(2);
-    subTotal = parseFloat(subTotal);
-    total = subTotal + deliver;
-    total = Number.parseFloat(total).toFixed(2);
-    if (subTotal % 1) subTotal = subTotal + "0";
-}
-
-function checkBasket(obj) {
-    let inBasket = false;
-    let basketIndex = 0;
-    for (let y = 0; y < basket.length; y++) {
-        if (obj.name == basket[y].name) {
-            inBasket = true;
-            basketIndex = y;
-        }
-    }
-    if (inBasket == false) basket.push(obj);
-    else {
-        setBasketPrice(basketIndex);
-    }
-}
-
-function setBasketPrice(basketIndex) {
-    basket[basketIndex].addet++;
-    let dishPrice = basket[basketIndex].price * basket[basketIndex].addet;
-    dishPrice = +dishPrice.toFixed(2);
-
-    let newPrice = "";
-    if (dishPrice % 1) newPrice = dishPrice + "0";
-    else newPrice = dishPrice;
-    basket[basketIndex].sum = newPrice;
+    renderSaladAddButton(saladIndex);
 }
 
 function startOrder() {
@@ -326,9 +413,6 @@ function closeDialog() {
     dialogRef.classList.remove(`opened`);
     wrapperRef.classList.remove(`d-none`);
     resetArrays();
-    renderBurger();
-    renderPizza();
-    renderSalad();
     renderBasket();
 }
 
@@ -355,6 +439,9 @@ function resetArrays() {
         burger[x].addet = 0;
         pizza[x].addet = 0;
         salad[x].addet = 0;
+        renderBurgerAddButton(x);
+        renderPizzaAddButton(x);
+        renderSaladAddButton(x);
     }
     basket.splice(0, basket.length);
 }

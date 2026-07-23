@@ -8,6 +8,15 @@ function basketContentTemplate() {
 function basketDishWrapperTemplate() {
     return /*html*/ `
         <h3>Your Basket</h3>
+        <div class="order-way">
+            <div class="button-cover">
+                <div class="button r" id="button-1">
+                    <input onclick="setOrderWay()" type="checkbox" class="checkbox" />
+                    <div class="knobs"></div>
+                    <div class="layer"></div>
+                </div>
+            </div>
+        </div>
         <div class="dish-wrapper" id="dishWrapper"></div>
     `;
 }
@@ -24,12 +33,24 @@ function basketDishTemplate(i) {
             <div class="order-price">
                 <div class="dish-order">
                     <p onclick="deleteDish(${i})" class="minus-btn">-</p>
-                    <p class="count">${basket[i].addet}</p>
+                    <p id="dishCount${i}" class="count"></p>
                     <p onclick="addDish(${i})" class="plus-btn">+</p>
                 </div>
-                <p class="price">${basket[i].sum} <span> €</span></p>
+                <p id="dishPrice${i}" class="price"></p>
             </div>
         </div>
+    `;
+}
+
+function dishCountTemplate(i) {
+    return /*html*/ `
+        ${basket[i].addet}
+    `;
+}
+
+function dishPriceTemplate(i) {
+    return /*html*/ `
+        ${basket[i].sum} <span> €</span>
     `;
 }
 
@@ -39,20 +60,37 @@ function basketPriceTableTemplate() {
             <div class="sub-fee">
                 <div class="sub">
                     <h5>Subtotal</h5>
-                    <p>${subTotal} €</p>
+                    <p id="subTotal"></p>
                 </div>
                 <div class="fee">
                     <h5>Delivery fee</h5>
-                    <p>${deliver} €</p>
+                    <p id="deliveryFee"></p>
                 </div>
             </div>
             <div class="total">
                 <h5>Total</h5>
-                <p>${total} €</p>
+                <p id="totalPrice"></p>
             </div>
         </section>
         <button onclick="startOrder()" class="order-btn">Buy now</button>
-        <!-- (${total} €) -->
+    `;
+}
+
+function subTotalTemplate() {
+    return /*html*/ `
+        ${subTotal} € 
+    `;
+}
+
+function deliveryFeeTemplate() {
+    return /*html*/ `
+        ${deliver} €
+    `;
+}
+
+function totalPriceTemplate() {
+    return /*html*/ `
+        ${total} €
     `;
 }
 
