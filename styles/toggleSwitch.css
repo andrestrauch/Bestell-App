@@ -77,7 +77,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #ebf7fc;
+    background-color: rgba(250, 202, 172, 1);
     transition: 0.3s ease all;
     z-index: 1;
 }
@@ -106,7 +106,7 @@
 }
 
 #button-1 .checkbox:checked ~ .layer {
-    background-color: #fcebeb;
+    background-color: rgb(226, 147, 147);
 }
 
 #button-1 .knobs,
