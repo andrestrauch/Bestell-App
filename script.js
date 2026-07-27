@@ -141,13 +141,15 @@ function renderSaladAddButton(i) {
 function renderDishCount(i) {
     let dishCountRef = document.getElementById(`dishCount${i}`);
     dishCountRef.innerHTML = "";
-    dishCountRef.innerHTML += dishCountTemplate(i);
+    dishCountRef.innerText = basket[i].addet;
+    // += dishCountTemplate(i);
 }
 
 function renderDishPrice(i) {
     let priceRef = document.getElementById(`dishPrice${i}`);
     priceRef.innerHTML = "";
-    priceRef.innerHTML += dishPriceTemplate(i);
+    priceRef.innerText = `${basket[i].sum} €`;
+    // += dishPriceTemplate(i);
 }
 
 function renderPriceTable() {
@@ -158,9 +160,12 @@ function renderPriceTable() {
     deliverRef.innerHTML = "";
     totalRef.innerHTML = "";
 
-    subRef.innerHTML += subTotalTemplate();
-    deliverRef.innerHTML += deliveryFeeTemplate();
-    totalRef.innerHTML += totalPriceTemplate();
+    subRef.innerText = `${subTotal} €`;
+    // innerHTML += subTotalTemplate();
+    deliverRef.innerText = `${deliver} €`;
+    // innerHTML += deliveryFeeTemplate();
+    totalRef.innerText = `${total} €`;
+    // innerHTML += totalPriceTemplate();
 }
 
 function addBurgerToBasket(i) {

@@ -42,18 +42,6 @@ function basketDishTemplate(i) {
     `;
 }
 
-function dishCountTemplate(i) {
-    return /*html*/ `
-        ${basket[i].addet}
-    `;
-}
-
-function dishPriceTemplate(i) {
-    return /*html*/ `
-        ${basket[i].sum} <span> €</span>
-    `;
-}
-
 function basketPriceTableTemplate() {
     return /*html*/ `
         <section class="price-table">
@@ -76,23 +64,35 @@ function basketPriceTableTemplate() {
     `;
 }
 
-function subTotalTemplate() {
-    return /*html*/ `
-        ${subTotal} € 
-    `;
-}
+// function dishCountTemplate(i) {
+//     return /*html*/ `
+//         ${basket[i].addet}
+//     `;
+// }
 
-function deliveryFeeTemplate() {
-    return /*html*/ `
-        ${deliver} €
-    `;
-}
+// function dishPriceTemplate(i) {
+//     return /*html*/ `
+//         ${basket[i].sum} €
+//     `;
+// }
 
-function totalPriceTemplate() {
-    return /*html*/ `
-        ${total} €
-    `;
-}
+// function subTotalTemplate() {
+//     return /*html*/ `
+//         ${subTotal} €
+//     `;
+// }
+
+// function deliveryFeeTemplate() {
+//     return /*html*/ `
+//         ${deliver} €
+//     `;
+// }
+
+// function totalPriceTemplate() {
+//     return /*html*/ `
+//         ${total} €
+//     `;
+// }
 
 function emptyBasketTemplate() {
     return /*html*/ `

@@ -1,10 +1,11 @@
 .order-way {
-    width: 50%;
+    width: 53%;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    /* background-color: white; */
 }
 
 .button-cover {
