@@ -102,6 +102,7 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         /* background-color: yellow; */
 
         .h1-rating {
@@ -117,7 +118,7 @@ main {
             h1 {
                 color: rgba(231, 108, 31, 1);
                 font-family: "Palanquin Dark";
-                font-size: 48px;
+                font-size: clamp(2.5rem, calc(2.357rem + 0.714vw), 3rem);
                 line-height: 120%;
                 /* background-color: yellow; */
 
@@ -158,8 +159,11 @@ main {
         }
 
         .descr {
-            font-size: 24px;
+            font-size: clamp(1.38rem, calc(1.339rem + 0.179vw), 1.5rem);
             line-height: 120%;
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
         }
     }
 
@@ -180,10 +184,10 @@ main {
             align-items: center;
             /* background-color: green; */
 
-            .d-none {
+            /* .d-none {
                 display: none;
                 opacity: 0;
-            }
+            } */
 
             .basket-wrapper {
                 width: 320px;
@@ -192,13 +196,13 @@ main {
                 align-items: center;
                 z-index: 1;
                 /* background-color: yellow; */
-                font-size: 32px;
+                font-size: clamp(1.5rem, calc(1.357rem + 0.714vw), 2rem);
                 line-height: 120%;
 
                 position: absolute;
                 height: 100%;
                 right: 0;
-                margin-right: calc((100vw - 1440px) / 2);
+                /* margin-right: calc((100vw - 1440px) / 2); */
 
                 .basket {
                     width: 320px;
@@ -223,7 +227,11 @@ main {
 
                         h3 {
                             color: rgba(253, 234, 220, 1);
-                            font-size: 32px;
+                            font-size: clamp(
+                                1.5rem,
+                                calc(1.357rem + 0.714vw),
+                                2rem
+                            );
                             line-height: 120%;
                             display: flex;
                             justify-content: center;
@@ -463,8 +471,8 @@ main {
                 background-color: rgba(231, 108, 31, 1);
 
                 .category-content {
-                    width: 500px;
-                    height: 100%;
+                    /* width: 500px; */
+                    /* height: 100%; */
                     /* max-width: 1440px; */
                     display: flex;
                     align-items: center;
@@ -480,7 +488,11 @@ main {
                         /* background-color: red; */
                     }
                     h2 {
-                        font-size: 40px;
+                        font-size: clamp(
+                            2rem,
+                            calc(1.857rem + 0.714vw),
+                            2.5rem
+                        );
                         /* background-color: red; */
                     }
                 }
@@ -497,14 +509,15 @@ main {
                 max-width: 1440px;
 
                 .menu-box {
+                    width: 713px;
+                    /* height: 142px; */
                     background-color: rgba(253, 234, 220, 1);
                     padding: 10px;
                     margin-bottom: 8px;
                     margin-right: 100px;
                     display: flex;
                     gap: 16px;
-                    width: 713px;
-                    height: 141px;
+
                     border-radius: 12px;
 
                     .dish-img {
@@ -544,26 +557,30 @@ main {
                             }
                         }
                         .menu-price {
-                            width: 120px;
+                            /* width: 120px; */
+                            height: 100%;
                             display: flex;
                             flex-direction: column;
                             justify-content: space-between;
                             /* background-color: red; */
 
                             p {
+                                width: auto;
                                 font-size: 24px;
                                 font-weight: 600;
                                 text-align: right;
+                                background-color: yelow;
                             }
 
                             button {
-                                width: 100%;
+                                width: 120px;
                                 height: 30px;
                                 font-size: 14px;
                                 font-weight: 600;
                                 padding: 5px 8px;
                                 border-radius: 20px;
                                 border: none;
+                                background-color: white;
                             }
                             .btn-addet {
                                 color: rgba(231, 108, 31, 1);
@@ -655,26 +672,87 @@ dialog.opened {
 dialog::backdrop {
     background-color: rgba(69, 68, 68, 0.8);
 }
-
-/* @media screen and (max-width: 1440px) {
-    main {
-        padding: 0 8px;
-    }
-} */
-
-@media screen and (max-width: 768px) {
-    .basket-wrapper,
-    .basket,
-    .menu-icon {
-        display: none;
-        opacity: 0;
-        width: 0px;
-        height: 0px;
-    }
-
-    .menu-box {
-        /* flex-direction: column; */
-        background-color: red;
-        color: red;
+@media screen and (min-width: 1441px) {
+    .basket-wrapper {
+        margin-right: calc((100vw - 1440px) / 2);
     }
 }
+@media screen and (max-width: 1440px) {
+    .header-content {
+        padding: 0 8px;
+    }
+    /* .basket-wrapper {
+        margin-right: calc((1440px - 100vw) / 5);
+    } */
+    .basket {
+        margin-right: 8px;
+    }
+}
+@media screen and (max-width: 1272px) and (min-width: 1080px) {
+    .menu-box {
+        margin-right: calc(1440px - 100vw) !important;
+    }
+}
+@media screen and (max-width: 1079px) {
+    .h1-rating {
+        flex-direction: column-reverse;
+        align-items: center !important;
+        justify-content: center;
+        margin: 0;
+        gap: 0 !important;
+    }
+    .category {
+        margin-top: 38px;
+    }
+    .category-content {
+        margin-right: 0 !important;
+        /* flex-direction: column; */
+        align-items: center;
+        justify-content: center;
+        /* height: 300%; */
+
+        gap: 0px;
+        img {
+            transform: translateY(-60px) translateX(180px) !important;
+        }
+        h2 span {
+            display: none !important;
+        }
+    }
+    .menu-box {
+        width: 280px !important;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: red;
+        margin-left: 150px;
+    }
+    .menu-descr {
+        width: 100%;
+        flex-direction: column;
+    }
+    .menu-price {
+        flex-direction: unset !important;
+
+        align-items: center;
+        gap: 0;
+
+        .btn {
+            width: 50px;
+        }
+    }
+    .basket-wrapper,
+    .basket {
+        display: none !important;
+        /* opacity: 0; */
+    }
+}
+
+/* @media screen and (max-width: 768px) {
+    .basket-wrapper {
+        display: none;
+        opacity: 0;
+    }
+    
+} */

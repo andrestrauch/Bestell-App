@@ -64,36 +64,6 @@ function basketPriceTableTemplate() {
     `;
 }
 
-// function dishCountTemplate(i) {
-//     return /*html*/ `
-//         ${basket[i].addet}
-//     `;
-// }
-
-// function dishPriceTemplate(i) {
-//     return /*html*/ `
-//         ${basket[i].sum} €
-//     `;
-// }
-
-// function subTotalTemplate() {
-//     return /*html*/ `
-//         ${subTotal} €
-//     `;
-// }
-
-// function deliveryFeeTemplate() {
-//     return /*html*/ `
-//         ${deliver} €
-//     `;
-// }
-
-// function totalPriceTemplate() {
-//     return /*html*/ `
-//         ${total} €
-//     `;
-// }
-
 function emptyBasketTemplate() {
     return /*html*/ `
         <div class="empty-basket">
@@ -106,22 +76,22 @@ function emptyBasketTemplate() {
 
 function burgerTemplate(i) {
     return /*html*/ `
-        <article class="menu-box">
+        <section class="menu-box">
             <div class="dish-img">
                 <img src=${burger[i].img}>
             </div>
             <section class="menu-descr">
-                <div class=menu-text>
+                <div class="menu-text">
                     <h3> ${burger[i].name}</h3>
                     <p> ${burger[i].descr}</p>
                 </div>
-                <div class=menu-price>
+                <div class="menu-price">
                     <p> ${burger[i].price}0 €</p>
                     <button onclick="addBurgerToBasket(${i})"
                     id=burgerBtn${i}></button>
                 </div>
             </section>
-        </article>
+        </section>
     `;
 }
 
@@ -139,21 +109,21 @@ function burgerBtnZeroTemplate() {
 
 function pizzaTemplate(i) {
     return /*html*/ `
-        <article class="menu-box">
+        <section class="menu-box">
             <div class="dish-img">
                 <img src=${pizza[i].img}>
             </div>
             <section class="menu-descr">
-                <div class=menu-text>
+                <div class="menu-text">
                     <h3> ${pizza[i].name}</h3>
                     <p> ${pizza[i].descr}</p>
                 </div>
-                <div class=menu-price>
+                <div class="menu-price">
                     <p> ${pizza[i].price}0 €</p>
                     <button onclick="addPizzaToBasket(${i})"  id=pizzaBtn${i}></button>
                 </div>
             </section>
-        </article>
+        </section>
     `;
 }
 
@@ -171,12 +141,12 @@ function pizzaBtnZeroTemplate() {
 
 function saladTemplate(i) {
     return /*html*/ `
-        <article class="menu-box">
+        <section class="menu-box">
             <div class="dish-img">
                 <img src=${salad[i].img}>
             </div>
             <section class="menu-descr">
-                <div class=menu-text>
+                <div class="menu-text">
                     <h3> ${salad[i].name}</h3>
                     <p> ${salad[i].descr}</p>
                 </div>
@@ -185,7 +155,7 @@ function saladTemplate(i) {
                     <button onclick="addSaladToBasket(${i})"  id=saladBtn${i}>Add to basket </button>
                 </div>
             </section>
-        </article>
+        </section>
     `;
 }
 
