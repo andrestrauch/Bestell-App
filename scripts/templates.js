@@ -7,6 +7,7 @@ function basketContentTemplate() {
 
 function basketDishWrapperTemplate() {
     return /*html*/ `
+        <p onclick="closeMobilBasket()" id="closeBasket" class="close-basket">X</p>
         <h3>Your Basket</h3>
         <div class="order-way">
             <div class="button-cover">
@@ -95,18 +96,6 @@ function burgerTemplate(i) {
     `;
 }
 
-function burgerBtnTemplate(i) {
-    return /*html*/ `
-        Addet ${burger[i].addet}  
-    `;
-}
-
-function burgerBtnZeroTemplate() {
-    return /*html*/ `
-        Add to Basket  
-    `;
-}
-
 function pizzaTemplate(i) {
     return /*html*/ `
         <section class="menu-box">
@@ -127,18 +116,6 @@ function pizzaTemplate(i) {
     `;
 }
 
-function pizzaBtnTemplate(i) {
-    return /*html*/ `
-        Addet ${pizza[i].addet}  
-    `;
-}
-
-function pizzaBtnZeroTemplate() {
-    return /*html*/ `
-        Add to Basket  
-    `;
-}
-
 function saladTemplate(i) {
     return /*html*/ `
         <section class="menu-box">
@@ -150,12 +127,36 @@ function saladTemplate(i) {
                     <h3> ${salad[i].name}</h3>
                     <p> ${salad[i].descr}</p>
                 </div>
-                <div class=menu-price>
+                <div class="menu-price">
                     <p> ${salad[i].price}0 €</p>
                     <button onclick="addSaladToBasket(${i})"  id=saladBtn${i}>Add to basket </button>
                 </div>
             </section>
         </section>
+    `;
+}
+
+function burgerBtnTemplate(i) {
+    return /*html*/ `
+        Addet ${burger[i].addet}  
+    `;
+}
+
+function burgerBtnZeroTemplate() {
+    return /*html*/ `
+        Add to Basket  
+    `;
+}
+
+function pizzaBtnTemplate(i) {
+    return /*html*/ `
+        Addet ${pizza[i].addet}  
+    `;
+}
+
+function pizzaBtnZeroTemplate() {
+    return /*html*/ `
+        Add to Basket  
     `;
 }
 

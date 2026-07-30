@@ -12,3 +12,23 @@ html {
     font-style: normal;
     font-weight: 700;
 }
+
+.dish-wrapper::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+.dish-wrapper::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 30px;
+}
+
+.dish-wrapper::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 30px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    .dish-wrapper {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}

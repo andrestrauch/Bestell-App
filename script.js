@@ -3,6 +3,7 @@ function init() {
     renderPizza();
     renderSalad();
     renderBasket();
+    renderMobilBasketCount();
 }
 
 function setOrderWay() {
@@ -26,6 +27,22 @@ function setRenderRefs() {
     dishRef.innerHTML = "";
 }
 
+function mobilBasket() {
+    mobilRef = document.getElementById(`basketWrapper`);
+    mobilRef.classList.toggle(`mobil-basket-wrapper`);
+    basketRef.classList.toggle(`mobil-basket`);
+
+    if (document.body.style.overflow == "hidden")
+        document.body.style.overflow = "";
+    else document.body.style.overflow = "hidden";
+}
+
+function closeMobilBasket() {
+    mobilRef.classList.remove(`mobil-basket-wrapper`);
+    basketRef.classList.remove(`mobil-basket`);
+    document.body.style.overflow = "";
+}
+
 function renderBasket() {
     setRenderRefs();
     if (basket.length == 0) dishRef.innerHTML += emptyBasketTemplate();
@@ -40,6 +57,11 @@ function renderBasket() {
         contentRef.innerHTML += basketPriceTableTemplate();
         renderPriceTable();
     }
+}
+
+function renderMobilBasketCount() {
+    let mobilCountRef = document.getElementById(`basketCount`);
+    mobilCountRef.innerText = basket.length;
 }
 
 function renderBurger() {
@@ -140,32 +162,26 @@ function renderSaladAddButton(i) {
 
 function renderDishCount(i) {
     let dishCountRef = document.getElementById(`dishCount${i}`);
-    dishCountRef.innerHTML = "";
+    dishCountRef.innerText = "";
     dishCountRef.innerText = basket[i].addet;
-    // += dishCountTemplate(i);
 }
 
 function renderDishPrice(i) {
     let priceRef = document.getElementById(`dishPrice${i}`);
-    priceRef.innerHTML = "";
+    priceRef.innerText = "";
     priceRef.innerText = `${basket[i].sum} €`;
-    // += dishPriceTemplate(i);
 }
 
 function renderPriceTable() {
     let subRef = document.getElementById(`subTotal`);
     let deliverRef = document.getElementById(`deliveryFee`);
     let totalRef = document.getElementById(`totalPrice`);
-    subRef.innerHTML = "";
-    deliverRef.innerHTML = "";
-    totalRef.innerHTML = "";
-
+    subRef.innerText = "";
+    deliverRef.innerText = "";
+    totalRef.innerText = "";
     subRef.innerText = `${subTotal} €`;
-    // innerHTML += subTotalTemplate();
     deliverRef.innerText = `${deliver} €`;
-    // innerHTML += deliveryFeeTemplate();
     totalRef.innerText = `${total} €`;
-    // innerHTML += totalPriceTemplate();
 }
 
 function addBurgerToBasket(i) {
@@ -224,6 +240,7 @@ function checkBasket(obj) {
     } else {
         updateBasket(basketIndex);
     }
+    renderMobilBasketCount();
 }
 
 function updateBasket(basketIndex) {
@@ -321,6 +338,7 @@ function deleteDish(i) {
         basket.splice(i, 1);
         renderBasket();
     }
+    renderMobilBasketCount();
 }
 
 function deleteBurger(i) {
@@ -364,6 +382,7 @@ function RemoveDish(i) {
 
     if (basket[i].addet == 0) basket.splice(i, 1);
     renderBasket();
+    renderMobilBasketCount();
 }
 
 function removeBurger(i) {
@@ -419,6 +438,11 @@ function closeDialog() {
     wrapperRef.classList.remove(`d-none`);
     resetArrays();
     renderBasket();
+    if (document.body.style.overflow == "hidden")
+        document.body.style.overflow = "";
+    mobilRef.classList.remove(`mobil-basket-wrapper`);
+    basketRef.classList.remove(`mobil-basket`);
+    renderMobilBasketCount();
 }
 
 function StartEventListener() {

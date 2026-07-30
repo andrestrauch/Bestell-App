@@ -12,8 +12,7 @@
         />
         <link rel="stylesheet" href="./styles/fonts.css" />
         <link rel="stylesheet" href="./styles/standard.css" />
-        <link rel="stylesheet" href="./styles/basket.css" />
-        <link rel="stylesheet" href="./styles/toggleSwitch.css" />
+        <link rel="stylesheet" href="./styles/toggleswitch.css" />
         <link rel="stylesheet" href="style.css" />
 
         <script src="./scripts/db.js" defer></script>
@@ -76,12 +75,16 @@
                                 src="./assets/icons/burger_section.png"
                                 alt=""
                             />
-                            <h2>Burger<span> & Sandwiches</span></h2>
+                            <h2>
+                                Burger<span class="burger-span">
+                                    & Sandwiches</span
+                                >
+                            </h2>
                         </div>
                     </article>
 
                     <section class="cat-menu">
-                        <div id="burgerMenu">Platzhalter 1</div>
+                        <div id="burgerMenu"></div>
                     </section>
 
                     <article class="category">
@@ -90,12 +93,14 @@
                                 src="./assets/icons/pizza_section.png"
                                 alt=""
                             />
-                            <h2>Pizza (30cm)</h2>
+                            <h2>
+                                Pizza <span class="pizza-span">(30cm)</span>
+                            </h2>
                         </div>
                     </article>
 
                     <section class="cat-menu">
-                        <div id="pizzaMenu">Platzhalter 2</div>
+                        <div id="pizzaMenu"></div>
                     </section>
 
                     <article class="category">
@@ -109,7 +114,7 @@
                     </article>
 
                     <section class="cat-menu">
-                        <div id="saladMenu">Platzhalter 3</div>
+                        <div id="saladMenu"></div>
                     </section>
                 </section>
             </section>
@@ -118,9 +123,21 @@
         <footer class="footer">
             <section class="footer-content">
                 <p>&copy; 2025 BurgerHouse</p>
-                <p>Imprint</p>
+                <p class="imprint">Imprint</p>
                 <p>Cookie Preferences</p>
             </section>
         </footer>
+
+        <section class="mobil-nav" id="mobilNav">
+            <div class="nav-content">
+                <a href=""> <img src="./assets/icons/home.png" alt="" /></a>
+                <img src="./assets/icons/person.png" alt="" />
+                <img src="./assets/icons/dining_2.png" alt="" />
+                <div class="basket-icon" onclick="mobilBasket()">
+                    <p id="basketCount" class="basket-count"></p>
+                    <img src="./assets/icons/shopping_cart2.png" alt="" />
+                </div>
+            </div>
+        </section>
     </body>
 </html>

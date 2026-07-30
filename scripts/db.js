@@ -1,4 +1,4 @@
-let burger = [
+const burger = [
     {
         name: "Veggie mushroom black burger",
         descr: "Mixed green salad, Tomatoes, Edamame, Mushrooms",
@@ -28,7 +28,8 @@ let burger = [
         img: "./assets/img/burger4.jpg",
     },
 ];
-let pizza = [
+
+const pizza = [
     {
         name: "Pizza Margherita",
         descr: "Tomato Sauce, Mozzarella",
@@ -58,7 +59,8 @@ let pizza = [
         img: "./assets/img/pizza4.jpg",
     },
 ];
-let salad = [
+
+const salad = [
     {
         name: "Warm beef arugula salad",
         descr: "Beef, Arugula, Field salad, Greek feta, Cherry tomatoes, Sun-dried Tomatoes, Balsamic-vinegar dressing",
@@ -88,13 +90,15 @@ let salad = [
         img: "./assets/img/salad4.jpg",
     },
 ];
-let basket = [];
+
+const basket = [];
 
 let basketRef;
 let contentRef;
 let dishRef;
 let dialogRef;
 let wrapperRef;
+let mobilRef;
 
 let subTotal;
 let price;
