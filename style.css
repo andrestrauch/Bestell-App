@@ -87,10 +87,10 @@ main {
         .h1-rating {
             width: 100%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             gap: 26px;
-            padding-bottom: 26px;
+            padding-bottom: 24px;
 
             h1 {
                 color: rgba(231, 108, 31, 1);
@@ -110,6 +110,7 @@ main {
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
+                margin-top: 8px;
                 background-color: rgba(250, 202, 172, 1);
                 border-radius: 4px;
                 font-size: 20px;
